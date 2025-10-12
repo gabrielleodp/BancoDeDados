@@ -1,16 +1,21 @@
-CREATE TABLE usuarios (
-    id_usuario NUMBER PRIMARY KEY,
-    nome VARCHAR2(100) NOT NULL,
-    email VARCHAR2(100) NOT NULL
+CREATE TABLE USUARIOS(
+                ID_USUARIO NUMBER(10) PRIMARY KEY NOT NULL,
+                NOME VARCHAR2(100) NOT NULL,
+                EMAIL VARCHAR2(100)
 );
 
-CREATE TABLE tarefas (
-    id_tarefa NUMBER PRIMARY KEY,
-    titulo VARCHAR2(100) NOT NULL,
-    descricao VARCHAR2(255),
-    status VARCHAR2(50),
-    responsavel NUMBER,
-    CONSTRAINT fk_responsavel FOREIGN KEY (responsavel) REFERENCES usuarios(id_usuario)
+
+CREATE TABLE TAREFAS(
+                ID_TAREFA NUMBER(10) PRIMARY KEY NOT NULL,
+                ID_USUARIO_TAREFA NUMBER(10) NOT NULL,
+                TITULO VARCHAR2(200) NOT NULL,
+                DESCRICAO VARCHAR2(1000),
+                STATUS VARCHAR2(20) DEFAULT 'PENDENTE' NOT NULL,
+                DATA_CRIACAO DATE DEFAULT SYSDATE,
+                
+                CONSTRAINT FK_ID_USUARIO_TAREFA 
+                FOREIGN KEY (ID_USUARIO_TAREFA) 
+                REFERENCES USUARIOS (ID_USUARIO)
 );
 
 
