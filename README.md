@@ -24,9 +24,9 @@ Ele utiliza Python para a lógica de negócios e SQL para persistência de dados
 3. Utilizar os menus para cadastrar usuários, tarefas e gerar relatórios.
 
 ## Grupo
-- Adrielly
+- Adrielly Costa
 - Gabrielle Oliveira de Paula
-- Luísa 
+- Luísa Vernersbach Varejão
 
 
 
