@@ -3,8 +3,8 @@ from src.utils.splash_screen import mostrar_splash
 from src.utils.config import MENUS
 from src.controller.controller_usuario import ControllerUsuario
 from src.controller.controller_tarefa import ControllerTarefa
-from src.model.usuario import Usuario  # <-- Adicione esta linha
-from src.model.tarefa import Tarefa   # <-- Adicione este import
+from src.model.usuario import Usuario
+from src.model.tarefa import Tarefa
 
 def conectar():
     # Altere para seu usuário, senha e serviço do Oracle
@@ -17,12 +17,22 @@ def ver_tabelas(conn):
     for row in cursor.fetchall():
         print(row[0])
 
+# 🟢 Função nova exigida pelo edital
+def contar_registros(conn):
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(1) FROM usuarios")
+    total_usuarios = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(1) FROM tarefas")
+    total_tarefas = cursor.fetchone()[0]
+    print(f"Usuários cadastrados: {total_usuarios}")
+    print(f"Tarefas cadastradas: {total_tarefas}")
+    print("===================================")
+
 def menu_usuarios(ctrl_usuario):
     while True:
         print(MENUS["usuarios"])
         op = input("Escolha: ")
         if op == "1":
-            # Inserir Usuário
             nome = input("Nome: ")
             email = input("Email: ")
             id_usuario = int(input("ID (deixe 0 para automático): "))
@@ -30,7 +40,6 @@ def menu_usuarios(ctrl_usuario):
             ctrl_usuario.inserir(usuario)
             print("Usuário inserido com sucesso!")
         elif op == "2":
-            # Atualizar Usuário
             id_usuario = int(input("ID do usuário a atualizar: "))
             nome = input("Novo nome: ")
             email = input("Novo email: ")
@@ -38,12 +47,10 @@ def menu_usuarios(ctrl_usuario):
             ctrl_usuario.atualizar(usuario)
             print("Usuário atualizado com sucesso!")
         elif op == "3":
-            # Excluir Usuário
             id_usuario = int(input("ID do usuário a excluir: "))
             ctrl_usuario.excluir(id_usuario)
             print("Usuário excluído com sucesso!")
         elif op == "4":
-            # Listar Usuários
             usuarios = ctrl_usuario.listar()
             for u in usuarios:
                 print(u)
@@ -57,7 +64,6 @@ def menu_tarefas(ctrl_tarefa):
         print(MENUS["tarefas"])
         op = input("Escolha: ")
         if op == "1":
-            # Inserir Tarefa
             titulo = input("Título: ")
             descricao = input("Descrição: ")
             status = input("Status (PENDENTE/EM ANDAMENTO/CONCLUÍDA): ")
@@ -71,7 +77,6 @@ def menu_tarefas(ctrl_tarefa):
             ctrl_tarefa.inserir(tarefa)
             print("Tarefa inserida com sucesso!")
         elif op == "2":
-            # Atualizar Tarefa
             id_tarefa = int(input("ID da tarefa a atualizar: "))
             titulo = input("Novo título: ")
             descricao = input("Nova descrição: ")
@@ -81,12 +86,10 @@ def menu_tarefas(ctrl_tarefa):
             ctrl_tarefa.atualizar(tarefa)
             print("Tarefa atualizada com sucesso!")
         elif op == "3":
-            # Excluir Tarefa
             id_tarefa = int(input("ID da tarefa a excluir: "))
             ctrl_tarefa.excluir(id_tarefa)
             print("Tarefa excluída com sucesso!")
         elif op == "4":
-            # Listar Tarefas
             tarefas = ctrl_tarefa.listar()
             for t in tarefas:
                 print(t)
@@ -95,13 +98,11 @@ def menu_tarefas(ctrl_tarefa):
         else:
             print("Opção inválida.")
 
-
 def menu_relatorios(conn):
     while True:
         print(MENUS["relatorios"])
         op = input("Escolha: ")
         if op == "1":
-            # Tarefas por Usuário (GROUP BY) - mostra nome do usuário e total de tarefas
             cursor = conn.cursor()
             cursor.execute("""
                 SELECT u.nome, COUNT(t.id_tarefa) AS total_tarefas
@@ -112,7 +113,6 @@ def menu_relatorios(conn):
             for row in cursor.fetchall():
                 print(f"Usuário: {row[0]}, Total de Tarefas: {row[1]}")
         elif op == "2":
-            # Tarefas com JOIN - mostra id, título, descrição, status e nome do usuário
             cursor = conn.cursor()
             cursor.execute("""
                 SELECT t.id_tarefa, t.titulo, t.descricao, t.status, u.nome
@@ -126,14 +126,15 @@ def menu_relatorios(conn):
         else:
             print("Opção inválida.")
 
-
 def main():
     mostrar_splash()
     conn = conectar()
-    print("Conexão com o banco realizada com sucesso!")  # Confirma conexão
-    ver_tabelas(conn)  # Adicione esta linha para ver as tabelas ao iniciar
+    print("Conexão com o banco realizada com sucesso!")
+    ver_tabelas(conn)
+    contar_registros(conn)  # 🟢 Adicionado conforme o edital
     ctrl_usuario = ControllerUsuario(conn)
     ctrl_tarefa = ControllerTarefa(conn)
+
     while True:
         print(MENUS["principal"])
         op = input("Escolha: ")
@@ -145,6 +146,7 @@ def main():
             menu_relatorios(conn)
         elif op == "0":
             break
+
     conn.close()
 
 if __name__ == "__main__":
