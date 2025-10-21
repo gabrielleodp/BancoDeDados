@@ -25,7 +25,7 @@ O sistema exibe uma tela inicial (splash screen), realiza a verificação de tab
 
 ---
 
-## ⚙️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - Python 3.10+
 - Oracle Database XE
@@ -34,61 +34,50 @@ O sistema exibe uma tela inicial (splash screen), realiza a verificação de tab
 
 ---
 
-## 🧩 Funcionalidades Principais
+## Funcionalidades Principais
 
-### 👥 Usuários
+### Usuários
 - Inserir usuário  
 - Atualizar usuário  
 - Excluir usuário (com verificação de integridade)  
 - Listar usuários  
 
-### 🗒️ Tarefas
+### Tarefas
 - Inserir tarefa  
 - Atualizar tarefa  
 - Excluir tarefa  
 - Listar tarefas  
 
-### 📊 Relatórios
+### Relatórios
 - **Relatório de Tarefas por Usuário (GROUP BY)** – mostra o nome do usuário e o total de tarefas associadas.  
 - **Relatório Detalhado de Tarefas (JOIN)** – mostra ID, título, descrição, status e nome do usuário responsável.  
 
 ---
 
-## 🧾 Contagem de Registros
+## Contagem de Registros
 
 Ao iniciar o sistema, são exibidos:
 - O total de **usuários cadastrados**  
 - O total de **tarefas cadastradas**
 
-Isso é feito com o comando SQL:
-```sql
-SELECT COUNT(1) FROM usuarios;
-SELECT COUNT(1) FROM tarefas;
+## Como Executar:
 
----
-## Como Executar
-1️⃣ Requisitos
+Requisitos:
+- Python
+- Oracle
+- Intalar a biblioteca necessária: pip install cx_Oracle
 
-Python 3.10 ou superior
 
-Oracle XE instalado e configurado
-
-Instalar a biblioteca necessária:
-
-pip install cx_Oracle
-
-2️⃣ Configurar Conexão
+## Configurar Conexão
 
 No arquivo src/main.py, atualize conforme o seu ambiente Oracle:
+- dsn = cx_Oracle.makedsn("localhost", 1521, service_name="XE")
+- conn = cx_Oracle.connect(user="system", password="admin", dsn=dsn)
 
-dsn = cx_Oracle.makedsn("localhost", 1521, service_name="XE")
-conn = cx_Oracle.connect(user="system", password="admin", dsn=dsn)
-
-3️⃣ Executar o Sistema
+## Executar o Sistema
 
 No terminal, dentro da pasta do projeto, execute:
-
-python src/main.py
+- python src/main.py
 
 O sistema exibirá a splash screen, verificará as tabelas existentes e mostrará a quantidade de registros antes de abrir o menu principal.
 
@@ -96,7 +85,6 @@ O sistema exibirá a splash screen, verificará as tabelas existentes e mostrar�
 - Adrielly Costa
 - Gabrielle Oliveira de Paula
 - Luísa Vernersbach Varejão
-
 
 
 **Professor:** Howard
