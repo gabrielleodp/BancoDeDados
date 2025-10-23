@@ -22,20 +22,6 @@ def exibir_contagem():
     print(f"Total de Usuários: {total_usuarios}")
     print(f"Total de Tarefas: {total_tarefas}")
 
-def listar_usuarios():
-    """Lista os usuários e retorna os IDs"""
-    usuarios = oracle.sqlToMatrix("SELECT ID_USUARIO, NOME FROM USUARIOS ORDER BY ID_USUARIO")
-    for u in usuarios:
-        print(f"{u[0]} - {u[1]}")
-    return [u[0] for u in usuarios]
-
-def listar_tarefas():
-    """Lista as tarefas e retorna os IDs"""
-    tarefas = oracle.sqlToMatrix("SELECT ID_TAREFA, TITULO FROM TAREFAS ORDER BY ID_TAREFA")
-    for t in tarefas:
-        print(f"{t[0]} - {t[1]}")
-    return [t[0] for t in tarefas]
-
 def confirmar_acao(msg: str) -> bool:
     """Pergunta ao usuário se deseja confirmar a ação"""
     resp = input(f"{msg} (S/N): ").strip().upper()
@@ -55,7 +41,7 @@ def run():
         # ---------- RELATÓRIOS ----------
         if opcao == 1:
             print(MENUS["relatorios"])
-            opc_rel = input("Escolha relatório: ").strip()
+            opc_rel = input("Escolha o relatório: ").strip()
             if opc_rel == "1":
                 relatorio.rel_usuarios()
             elif opc_rel == "2":
@@ -71,7 +57,7 @@ def run():
         elif opcao == 2:
             while True:
                 print(MENUS["entidades"])
-                inserir_op = input("Escolha entidade: ").strip()
+                inserir_op = input("Escolha uma opção: ").strip()
                 if inserir_op == "1":
                     ctrl_usuario.inserir()
                 elif inserir_op == "2":
@@ -85,13 +71,11 @@ def run():
         elif opcao == 3:
             while True:
                 print(MENUS["entidades"])
-                atualizar_op = input("Escolha entidade: ").strip()
+                atualizar_op = input("Escolha uma opção: ").strip()
                 if atualizar_op == "1":
-                    listar_usuarios()
-                    ctrl_usuario.atualizar()
+                    ctrl_usuario.atualizar()  # usa método do controller que já lista bonito
                 elif atualizar_op == "2":
-                    listar_tarefas()
-                    ctrl_tarefa.atualizar()
+                    ctrl_tarefa.atualizar()   # idem
                 elif atualizar_op == "0":
                     break
                 else:
@@ -101,15 +85,11 @@ def run():
         elif opcao == 4:
             while True:
                 print(MENUS["entidades"])
-                excluir_op = input("Escolha entidade: ").strip()
+                excluir_op = input("Escolha uma opção: ").strip()
                 if excluir_op == "1":
-                    listar_usuarios()
-                    if confirmar_acao("Deseja realmente excluir este usuário?"):
-                        ctrl_usuario.excluir()
+                    ctrl_usuario.excluir()  # já lista e pede confirmação dentro
                 elif excluir_op == "2":
-                    listar_tarefas()
-                    if confirmar_acao("Deseja realmente excluir esta tarefa?"):
-                        ctrl_tarefa.excluir()
+                    ctrl_tarefa.excluir()   # já lista e pede confirmação dentro
                 elif excluir_op == "0":
                     break
                 else:
@@ -123,6 +103,5 @@ def run():
         # Atualiza contagem após cada operação
         exibir_contagem()
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     run()
-
