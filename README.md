@@ -33,9 +33,11 @@ O sistema possui as entidades: **USUÁRIOS** e **TAREFAS**.
 
 ---
 
-**config.py** → configurações globais do sistema
+**config.py** → configurações globais do sistema.
+
 **main.py** → ponto de entrada do sistema (menu principal no terminal).  
-**requirements.txt** → dependências do projeto
+
+**requirements.txt** → dependências do projeto.
 
 ---
 
