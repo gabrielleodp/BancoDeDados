@@ -1,7 +1,5 @@
-INSERT INTO USUARIOS (id_usuario, nome, email) VALUES (1, 'Gabrielle Oliveira', 'gabrielle@email.com');
-INSERT INTO USUARIOS (id_usuario, nome, email) VALUES (2, 'Adrielly Costa', 'adrielly@email.com');
-INSERT INTO USUARIOS (id_usuario, nome, email) VALUES (3, 'Luísa Varejão', 'luisa@email.com');
+-- Inserção de usuários
+INSERT INTO USUARIOS (ID_USUARIO, NOME, EMAIL) VALUES (1, 'Gabrielle Oliveira', 'gabrielle@email.com');
+INSERT INTO USUARIOS (ID_USUARIO, NOME, EMAIL) VALUES (2, 'Adrielly Costa', 'adrielly@email.com');
+INSERT INTO USUARIOS (ID_USUARIO, NOME, EMAIL) VALUES (3, 'Luísa Varejão', 'luisa@email.com');
 COMMIT;
-
-
-
