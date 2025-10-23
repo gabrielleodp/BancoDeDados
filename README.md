@@ -75,7 +75,7 @@ pip install -r requirements.txt
 python3 -m venv venv_proj
 ```
 
-depois:
+depois ative o ambiente:
 - (no Linux): 
 ```bash 
 source venv_proj/bin/activate
@@ -98,13 +98,17 @@ cd /home/labdatabase/database_services
 ```
 - Suba/inicie o Oracle:
 ```bash
-Docker compose up -d)
+docker compose up -d
 ```
 - O arquivo src/conexion/passphrase/authentication.oracle já contém o usuário e senha.
 - Não é necessário criar nada manualmente no DBeaver.
 
 **6.	Criar as tabelas e inserir os dados de exemplo:**
-- No terminal, volte para o caminho do projeto, e insira o comando: 
+- No terminal, volte para o caminho do projeto:
+```bash
+cd ~/ProjetoBancoDeDados
+```
+- Insira o comando: 
 ```bash
 python create_tables_and_records.py
 ```
