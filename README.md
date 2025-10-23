@@ -91,7 +91,12 @@ pip install -r requirements.txt
 ```
 
 **5.	Configurar conexão Oracle:**
-- Certifique-se que o Oracle está rodando (ex.: via container) 
+- Certifique-se que o Oracle está rodando (ex.: via container)
+- primeiro vá para o caminho do docker
+```bash
+cd /home/labdatabase/database_services
+```
+- Suba/inicie o Oracle:
 ```bash
 Docker compose up -d)
 ```
@@ -99,7 +104,7 @@ Docker compose up -d)
 - Não é necessário criar nada manualmente no DBeaver.
 
 **6.	Criar as tabelas e inserir os dados de exemplo:**
-- No terminal insira o comando: 
+- No terminal, volte para o caminho do projeto, e insira o comando: 
 ```bash
 python create_tables_and_records.py
 ```
