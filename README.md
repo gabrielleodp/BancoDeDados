@@ -5,6 +5,19 @@ O projeto implementa um **sistema de gerenciamento de tarefas e usuários**, per
 
 O sistema foi construído utilizando o **padrão MVC (Model-View-Controller)**, com separação clara entre as camadas de modelo, controle e visualização.
 
+## É necessário já ter pré-instalado:
+- Python 3.8 ou superior, verifique se já está instalado:
+```bash
+python --version
+```
+- Oracle ativo (local ou via container), verifique se já possui:
+```bash
+docker ps
+```
+- Instant Client do Oracle (para a biblioteca cx_Oracle), verifique se já possui:
+```bash
+echo $LD_LIBRARY_PATH
+```
 ---
 
 ## Organização do Projeto
