@@ -72,7 +72,7 @@ pip install -r requirements.txt
 
 **3.	Criar um ambiente virtual (opcional, mas recomendado):**
 ```bash 
-python -m venv venv_proj
+python3 -m venv venv_proj
 ```
 
 depois:
