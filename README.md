@@ -18,8 +18,8 @@ O sistema possui as entidades: **USUÁRIOS** e **TAREFAS**.
 - create_tables.sql → criação das tabelas e sequencias.  
 - insert_tarefas.sql → inserção de registros de exemplo.  
 - insert_usuarios.sql → inserção de registros de exemplo.  
-- relatorio_group_by.sql →  
-- relatorio_join.sql →  
+- relatorio_group_by.sql → relatório agrupado por usuário
+- relatorio_join.sql → relatório detalhado com JOIN
 
 ---
 
@@ -33,9 +33,9 @@ O sistema possui as entidades: **USUÁRIOS** e **TAREFAS**.
 
 ---
 
-**config.py** →  
+**config.py** → configurações globais do sistema
 **main.py** → ponto de entrada do sistema (menu principal no terminal).  
-**requirements.txt** →  
+**requirements.txt** → dependências do projeto
 
 ---
 
