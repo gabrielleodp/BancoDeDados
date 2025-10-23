@@ -1,5 +1,5 @@
 class ControllerUsuario:
-    def __init__(self, oracle):
+    def _init_(self, oracle):
         self.oracle = oracle
 
     def inserir(self):
@@ -14,13 +14,23 @@ class ControllerUsuario:
             print("Erro ao inserir usuário:", e)
 
     def listar(self):
-        usuarios, _ = self.oracle.sqlToMatrix("SELECT ID_USUARIO, NOME, EMAIL FROM USUARIOS ORDER BY ID_USUARIO")
+        usuarios, _ = self.oracle.sqlToMatrix(
+            "SELECT ID_USUARIO, NOME, EMAIL FROM USUARIOS ORDER BY ID_USUARIO"
+        )
         for u in usuarios:
             print(f"{u[0]} - {u[1]} ({u[2]})")
         return [u[0] for u in usuarios]
 
     def atualizar(self):
-        ids = self.listar()
+        # Listagem amigável
+        usuarios, _ = self.oracle.sqlToMatrix(
+            "SELECT ID_USUARIO, NOME, EMAIL FROM USUARIOS ORDER BY ID_USUARIO"
+        )
+        print("USUÁRIOS CADASTRADOS:")
+        for u in usuarios:
+            print(f"{u[0]} - {u[1]} ({u[2]})")
+        ids = [u[0] for u in usuarios]
+
         try:
             id_usuario = int(input("ID do usuário a atualizar: "))
             if id_usuario not in ids:
@@ -44,8 +54,13 @@ class ControllerUsuario:
                 return
             confirm = input("Deseja realmente excluir? (S/N): ").strip().upper()
             if confirm == "S":
-                self.oracle.write(f"DELETE FROM USUARIOS WHERE ID_USUARIO={id_usuario}")
-                print("Usuário excluído com sucesso!")
+                try:
+                    self.oracle.write(f"DELETE FROM USUARIOS WHERE ID_USUARIO={id_usuario}")
+                    print("Usuário excluído com sucesso!")
+                except Exception as e:
+                    if "ORA-02292" in str(e):
+                        print("Não é possível excluir este usuário. Existem tarefas vinculadas a ele.")
+                    else:
+                        print("Erro ao excluir usuário:", e)
         except Exception as e:
             print("Erro ao excluir usuário:", e)
-
