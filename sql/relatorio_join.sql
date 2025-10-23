@@ -1,6 +1,4 @@
--- Consulta para retornar quantidade de tarefas relacionadas a cada usuário. 
-
-SELECT t.id_tarefa, t.titulo, t.status, u.nome
-FROM tarefas t
-JOIN usuarios u ON t.usuario_tarefa = u.id_usuario;
-
+-- Relatório: tarefas com dados do usuário
+SELECT T.ID_TAREFA, T.TITULO, T.STATUS, U.NOME
+FROM TAREFAS T
+JOIN USUARIOS U ON T.USUARIO_TAREFA = U.ID_USUARIO;
