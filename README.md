@@ -5,6 +5,8 @@ O projeto implementa um **sistema de gerenciamento de tarefas e usuários**, per
 
 O sistema foi construído utilizando o **padrão MVC (Model-View-Controller)**, com separação clara entre as camadas de modelo, controle e visualização.
 
+- [Vídeo da execução](https://www.youtube.com/watch?v=8sFr8z8dwXo)
+
 ## É necessário já ter pré-instalado:
 - Python 3.8 ou superior, verifique se já está instalado:
 ```bash
@@ -165,7 +167,6 @@ ____________________________________
 - Adrielly Costa
 - Gabrielle Oliveira de Paula
 - Luísa Vernersbach Varejão
-
 
 **Professor:** Howard
 **Disciplina:** Banco de Dados  
