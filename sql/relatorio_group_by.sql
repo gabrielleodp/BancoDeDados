@@ -1,6 +1,4 @@
--- Consulta para retornar o total de tarefas cadastradas na base e o nome dos usuários que esão executando as tarefas
-
-SELECT usuario_tarefa, COUNT(*) AS total_tarefas
-FROM tarefas
-GROUP BY usuario_tarefa;
-
+-- Relatório: total de tarefas por usuário
+SELECT USUARIO_TAREFA, COUNT(*) AS TOTAL_TAREFAS
+FROM TAREFAS
+GROUP BY USUARIO_TAREFA;
